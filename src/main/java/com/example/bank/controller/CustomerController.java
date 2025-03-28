@@ -1,5 +1,6 @@
 package com.example.bank.controller;
 
+import com.example.bank.JwtSecurity.JwtUtil;
 import com.example.bank.dto.CustomerDtO;
 import com.example.bank.entity.Customer;
 import com.example.bank.service.CustomerService;
@@ -7,12 +8,17 @@ import com.example.bank.service.SecurityService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,12 +30,46 @@ public class CustomerController {
     private final PasswordEncoder passwordEncoder;
 
 
+    private final AuthenticationManager authenticationManager;
+    private final JwtUtil jwtUtil;
+
 
     @PostMapping("/addCustomer")
-    public UserDetails addUser(@RequestBody Customer customer){
+    public ResponseEntity<Map<String, String>> addUser(@RequestBody Customer customer){
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
-        return securityService.saveUser(customer);
+        securityService.saveUser(customer);
+
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "User registered successfully.");
+        return ResponseEntity.ok(response);
     }
+
+
+    // 🔹 Authenticate & Generate JWT Token
+    @PostMapping("/auth/login")
+    public ResponseEntity<?> authenticate(@RequestBody Customer customer) {
+        try {
+            System.out.println("Received username: " + customer.getUsername());
+            System.out.println("Received password: " + customer.getPassword());
+
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(customer.getUsername(), customer.getPassword())
+            );
+
+            System.out.println("Authentication successful!");
+
+            UserDetails userDetails = securityService.loadUserByUsername(customer.getUsername());
+            String token = jwtUtil.generateToken(userDetails.getUsername());
+
+            System.out.println("Generated Token: " + token);
+
+            return ResponseEntity.ok(Map.of("token", token));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+        }
+    }
+
 
 
     @GetMapping

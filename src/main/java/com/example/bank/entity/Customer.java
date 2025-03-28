@@ -1,5 +1,6 @@
 package com.example.bank.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,7 +24,8 @@ public class Customer implements UserDetails {
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+
+    private String username;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -31,6 +33,7 @@ public class Customer implements UserDetails {
 
     @Column(nullable = false, unique = true)
     private String password;
+
 
 
     @Override
@@ -45,6 +48,6 @@ public class Customer implements UserDetails {
 
     @Override
     public String getUsername() {
-        return name;
+        return username;
     }
 }

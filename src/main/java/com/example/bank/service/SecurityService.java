@@ -23,6 +23,7 @@ public class SecurityService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return customerRepo.findByName(username).orElseThrow(()->new RuntimeException("user not found"));
+        return customerRepo.findByUsername(username).orElseThrow(()->new RuntimeException("user not found"));
     }
+
 }

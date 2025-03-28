@@ -10,10 +10,10 @@ public class CustomerMapper {
     public static Customer mapToEntity(CustomerDtO customerDtO) {
         return new Customer(
                 customerDtO.getId(),
-                customerDtO.getName(),
+                customerDtO.getUsername(),
                 customerDtO.getEmail(),
                 customerDtO.getAmount(),
-                null // Password is not needed here
+                null
         );
     }
 
@@ -21,7 +21,7 @@ public class CustomerMapper {
     public static CustomerDtO mapToDtO(Customer customer) {
         return new CustomerDtO(
                 customer.getId(),
-                customer.getName(),
+                customer.getUsername(),
                 customer.getEmail(),
                 customer.getAmount()
         );

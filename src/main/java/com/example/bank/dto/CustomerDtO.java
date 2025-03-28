@@ -13,8 +13,8 @@ public class CustomerDtO {
     private Long id;
 
     @NotBlank(message = "Name is required")
-    @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
-    private String name;
+    @Size(min = 2, max = 50, message = "UserName must be between 2 and 50 characters")
+    private String username;
 
     @NotBlank(message = "Email is required")
     @Email(message = "Invalid email format")
@@ -23,8 +23,6 @@ public class CustomerDtO {
     @NotNull(message = "Amount cannot be null")
     @Positive(message = "Amount must be positive")
     private Double amount;
-
-
 
 
 }

@@ -27,8 +27,6 @@ public interface CustomerService {
     public Page<CustomerDtO> paginationWithSorting(int pageNo, int pageSize,String field);
 
 
-    //custom methods
-   public Optional<CustomerDtO> getByName(String name);
 
 
 

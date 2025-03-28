@@ -94,11 +94,7 @@ public class CustomerServiceImpl implements CustomerService {
         return customers.map(CustomerMapper::mapToDtO);
     }
 
-    @Override
-    public Optional<CustomerDtO> getByName(String name) {
-        Optional<Customer> customer = customerRepo.findByName(name);
-        return customer.map(CustomerMapper::mapToDtO);
-    }
+
 
 
 }
