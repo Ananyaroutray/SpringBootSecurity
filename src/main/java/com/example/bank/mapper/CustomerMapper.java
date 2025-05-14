@@ -6,7 +6,6 @@ import com.example.bank.entity.Customer;
 public class CustomerMapper {
 
     // Convert DTO to Entity (Use a default password if needed)
-
     public static Customer mapToEntity(CustomerDtO customerDtO) {
         return new Customer(
                 customerDtO.getId(),
@@ -26,5 +25,4 @@ public class CustomerMapper {
                 customer.getAmount()
         );
     }
-
 }

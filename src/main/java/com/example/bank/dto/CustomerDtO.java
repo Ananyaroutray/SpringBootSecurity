@@ -25,4 +25,5 @@ public class CustomerDtO {
     private Double amount;
 
 
+
 }

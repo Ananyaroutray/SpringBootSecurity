@@ -27,8 +27,32 @@ public class CustomerServiceImpl implements CustomerService {
 
 
 
-
     @Override
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public List<CustomerDtO> getAllCustomers() {
         List<Customer> customers = customerRepo.findAll();
         if (customers.isEmpty()) {
@@ -40,12 +64,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
 
-    @Override
-    public CustomerDtO addCustomer(CustomerDtO customerDtO) {
-        Customer customer = CustomerMapper.mapToEntity(customerDtO);
-        Customer savedCustomer = customerRepo.save(customer);
-        return CustomerMapper.mapToDtO(savedCustomer);
-    }
+//    @Override
+//    public CustomerDtO addCustomer(CustomerDtO customerDtO) {
+//        Customer customer = CustomerMapper.mapToEntity(customerDtO);
+//        Customer savedCustomer = customerRepo.save(customer);
+//        return CustomerMapper.mapToDtO(savedCustomer);
+//    }
 
     @Override
     public CustomerDtO getCustomerById(Long id) {

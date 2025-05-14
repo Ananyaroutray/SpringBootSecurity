@@ -17,5 +17,4 @@ public class ErrorDetails {
     private Date date;
     private String description;
 
-
 }

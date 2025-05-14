@@ -16,7 +16,6 @@ public class SecurityService implements UserDetailsService {
     private final CustomerRepo customerRepo;
 
 
-
     public UserDetails saveUser(Customer customer){
         return customerRepo.save(customer);
     }

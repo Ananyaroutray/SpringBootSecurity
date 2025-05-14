@@ -45,7 +45,7 @@ public class CustomerController {
     }
 
 
-    // 🔹 Authenticate & Generate JWT Token
+    // Authenticate & Generate JWT Token
     @PostMapping("/auth/login")
     public ResponseEntity<?> authenticate(@RequestBody Customer customer) {
         try {
@@ -70,7 +70,10 @@ public class CustomerController {
         }
     }
 
-
+//In the /addCustomer endpoint, we encode the password using PasswordEncoder and save the user securely.
+// In the /auth/login endpoint, we authenticate the user using Spring Security’s
+// AuthenticationManager, and if successful, we generate a JWT token with JwtUtil and return it to the
+// user for future authentication
 
     @GetMapping
     public String greet(){

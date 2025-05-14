@@ -13,11 +13,10 @@ public interface CustomerService {
 
     //crud
     public List<CustomerDtO> getAllCustomers();
-    public CustomerDtO addCustomer(CustomerDtO customerDtO);
+   // public CustomerDtO addCustomer(CustomerDtO customerDtO);
     public CustomerDtO getCustomerById(Long id);
     public CustomerDtO updateCustomer(Long id, CustomerDtO customerDtO);
     public void deleteCustomer(Long id);
-
 
 
 
